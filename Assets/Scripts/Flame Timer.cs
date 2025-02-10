@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FlameTimer : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class FlameTimer : MonoBehaviour
     
     public GameObject flame;
     public GameObject flameParticles;
+    
+    public TextMeshProUGUI flameText;
     
     void Start()
     {
@@ -24,6 +28,12 @@ public class FlameTimer : MonoBehaviour
         else
         {
             flameTimer -= Time.deltaTime;
+            
+            int minutes = Mathf.FloorToInt(flameTimer / 60);
+            int seconds = Mathf.FloorToInt(flameTimer % 60);
+            
+            flameText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            
         }
     }
 
