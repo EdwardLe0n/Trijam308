@@ -16,7 +16,6 @@ public class ThirdPersonCamera : MonoBehaviour
         
         float x = 0;
         float y = 0;
-        float z = 0;
         
         x += -mouse.delta.y.ReadValue() * 10f * Time.deltaTime;
         y += mouse.delta.x.ReadValue() * 10f * Time.deltaTime;
