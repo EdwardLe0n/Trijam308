@@ -18,11 +18,17 @@ public class ThirdPersonCamera : MonoBehaviour
         float y = 0;
         float z = 0;
         
-        x += -mouse.delta.y.ReadValue() * 50f * Time.deltaTime;
-        y += mouse.delta.x.ReadValue() * 100f * Time.deltaTime;
+        x += -mouse.delta.y.ReadValue() * 10f * Time.deltaTime;
+        y += mouse.delta.x.ReadValue() * 10f * Time.deltaTime;
 
         this.transform.Rotate(0,y,0);
-        camOrigin.transform.Rotate(x,0,0);
-
+        
+        // code for a height cap in terms of rotations
+        
+        if (camOrigin.transform.rotation.eulerAngles.x + x < 45f || camOrigin.transform.rotation.eulerAngles.x + x > 315f)
+        {
+            camOrigin.transform.Rotate(x,0,0);
+        }
+        
     }
 }
