@@ -5,11 +5,32 @@ public class ThirdPersonCamera : MonoBehaviour
 {
     
     public GameObject camOrigin;
+    private bool camLocked;
 
+    void Start()
+    {
+        camLocked = false;
+    }
+    
     // Update is called once per frame
     void Update()
     {
         
+        // Will now toggle if the player wants to move the camera or not
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            camLocked = !camLocked;
+        }
+        
+        if (!camLocked)
+        {
+            camMovement();
+        }
+        
+    }
+
+    void camMovement()
+    {
         // Deals with mouse movement to rotation
         
         var mouse = Mouse.current;
@@ -28,6 +49,5 @@ public class ThirdPersonCamera : MonoBehaviour
         {
             camOrigin.transform.Rotate(x,0,0);
         }
-        
     }
 }
